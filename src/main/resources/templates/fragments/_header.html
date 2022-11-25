@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<th:block th:fragment="header">
+
+    <!-- header section start -->
+    <div class="header_section">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="logo" href="index.html"><img src="images/logo2.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/playlist}">Playlist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/songs}">Ma musique</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="search_icon search">
+                            <a href="#"><img th:src="@{/images/search-icon.png}"></a>
+                            <form th:action="searchsong" method="post" style="width: 67%;margin-left: -45%;">
+                                <input type="text" name="key" th:value = "${key}" placeholder="Rechercher ...">
+
+                            </form>
+
+                        </div>
+                    </li>
+                </ul>
+                <div class="search_icon"><a href="#"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">login</span></a></div>
+            </div>
+        </nav>
+    </div>
+    <!-- header section end -->
+
+</th:block>
+
+</html>

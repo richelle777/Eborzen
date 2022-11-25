@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/_head.html::head"></th:block>
+</head>
+<body>
+    <th:block th:replace="fragments/_header.html::header"></th:block>
+
+
+<!--    <div class="songs-container">
+        <h2>Ma musique</h2>
+        <ul>
+    &lt;!&ndash;      <li th:each="music : ${musics}">
+            <a th:href="@{play}">
+              <div class="song">
+                <div class="imgBox"><img th:src="@{/images/img-13.png}" alt=""></div><h3><span th:text="${music.intitule}"></span><span th:text="${music.duree}">04:35</span></h3><i class="fa fa-play"></i>
+              </div>
+            </a>
+          <li>&ndash;&gt;
+            <li th:each="titre : ${titres}">
+                <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img th:src="@{/images/img-13.png}" alt="">
+                        </div>
+
+                        <div class="content">
+                            <span class="title" th:text="${titre.titreDto.intitule}">title</span>
+                            <span class="author" th:each="artiste : ${titre.artisteDtos}" th:text="${artiste.surnom}">Belka tobis</span>
+                        </div>
+                        &lt;!&ndash;<h3><span th:text="${titre.titreDto.duree}">04:35</span></h3>&ndash;&gt;
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            <li>
+
+        </ul>
+    </div>-->
+
+    <div class="songs-container">
+        <h2>Ma musique</h2>
+        <ul>
+            <li th:each="titre : ${titres}">
+                <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
+                    <div class="song">
+                        <div class="imgBox" style="margin-top: 1%;">
+                            <img th:src="@{${titre.titreDto.image}}" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title" th:text="${titre.titreDto.intitule}">title</span>
+                            <span class="artiste" style="display: flex; flex-direction: row;"> <h4 style="padding-right: 10px;" th:each="artiste : ${titre.artisteDtos}" th:text="${artiste.surnom}">Belka tobis</h4> </span>
+                        </div>
+                        <i class="fa fa-play" style="margin-top: 1%;"></i>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+
+
+
+
+
+    <th:block th:replace="fragments/_footer.html::footer"></th:block>
+
+    <th:block th:replace="fragments/_js.html::js"></th:block>
+   </body>
+</html>

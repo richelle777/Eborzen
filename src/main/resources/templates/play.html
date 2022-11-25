@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <th:block th:replace="fragments/_head.html::head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/_header.html::header"></th:block>
+
+
+
+    <div class="play-container">
+        <div class="card">
+            <div class="imgBox">
+                <img th:src="@{${titre.image}}" alt="">
+            </div>
+            <div class="title" th:text="${titre.intitule}">someone awesome</div>
+            <audio th:src="@{${titre.audio}}" id="song"></audio>
+            <div class="progess">
+                <div class="slide">
+                    <div class="range" id="range"></div>
+                </div>
+                <div class="icons">
+
+                    <i class="fa fa-volume-down" id="vd"></i>
+                    <i class="fa" id="play"></i>
+                    <i class="fa fa-volume-up" id="vu"></i>
+                </div>
+                <div class="timeline"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<th:block th:replace="fragments/_footer.html::footer"></th:block>
+
+      <th:block th:replace="fragments/_js.html::js"></th:block>
+   </body>
+</html>

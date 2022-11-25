@@ -1,0 +1,166 @@
+.songs-container {
+  position: relative;
+  margin: 5rem 10rem;
+  min-height: 50vh;
+}
+
+.songs-container ul {
+  list-style: none;
+  display: block;
+}
+
+.songs-container ul li {
+  -webkit-box-shadow: 0 0 4px #ffb7b7;
+          box-shadow: 0 0 4px #ffb7b7;
+  border-radius: 12px;
+  padding: .5rem 2rem;
+}
+
+.songs-container ul li .song {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.songs-container ul li .song .imgBox {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.songs-container ul li .song .imgBox img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.songs-container ul li .song .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 90%;
+  padding: .5rem 2rem;
+}
+
+.songs-container ul li .song .content .title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.songs-container ul li .song .content .author {
+  font-weight: 500;
+  font-size: .7rem;
+}
+
+.songs-container ul li .song .fa-play {
+  font-size: 1.3rem;
+  line-height: 50px;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.songs-container ul li .song .fa-play:hover {
+  color: blue;
+}
+
+.play-container {
+  position: relative;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  border: none;
+}
+
+.play-container .card {
+  position: relative;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  padding-top: 5rem;
+}
+
+.play-container .card .imgBox {
+  position: relative;
+  height: 25rem;
+  width: 30rem;
+  overflow: hidden;
+}
+
+.play-container .card .imgBox img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.play-container .card .progess .slide {
+  width: 100%;
+  background: #ffb7b7;
+  height: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.play-container .card .progess .slide .range {
+  width: 0;
+  background: #8181fa;
+  height: 10px;
+}
+
+.play-container .card .progess .icons {
+  position: relative;
+  width: 20rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.play-container .card .progess .icons .fa-pause, .play-container .card .progess .icons .fa-play {
+  font-size: 2rem;
+  margin: 0 2rem;
+  cursor: pointer;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.play-container .card .progess .icons .fa-pause:active, .play-container .card .progess .icons .fa-play:active {
+  color: #495af8;
+}
+
+.play-container .card .progess .icons .fa-volume-down, .play-container .card .progess .icons .fa-volume-up {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=songs.css.map */
