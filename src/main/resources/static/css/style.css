@@ -230,6 +230,12 @@ button {
     float: left;
 }
 
+.logo2 {
+    width: 40%;
+    float: left;
+    margin-left: 32%;
+}
+
 
 .search{
     position: relative;
