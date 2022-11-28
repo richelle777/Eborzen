@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/_head.html::head"></th:block>
+
+</head>
+
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <a class="logo2" href="index.html"><img src="images/logo2.png"></a>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="img" style="background-image: url(images/bg-1.jpg);">
+                        </div>
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">S'inscrire</h3>
+                                </div>
+                                <div class="w-100">
+                                    <p class="social-media d-flex justify-content-end">
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <form  class="signin-form" th:action="@{/registration}" method="POST" th:object="${user}">
+                                <div class="form-group mb-3">
+                                    <label class="label" for="name">Nom</label>
+                                    <input type="text" class="form-control" th:field="*{name}" placeholder="Nom" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="name">Prenom</label>
+                                    <input type="text" class="form-control" th:field="*{lastName}" placeholder="Prénom" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="name">Email</label>
+                                    <input type="text" class="form-control" th:field="*{email}" placeholder="Email" required>
+                                    <label
+                                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                            class="validation-message"></label>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Mot de passe</label>
+                                    <input type="password" class="form-control" th:field="*{password}" placeholder="Mot de passe" required>
+                                    <label
+                                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                            class="validation-message"></label>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="password">Confirmer le mot de passe</label>
+                                    <input type="password" class="form-control" th:field="*{confpassword}" placeholder="Mot de passe" required>
+                                    <label
+                                            th:if="${#fields.hasErrors('confpassword')}" th:errors="*{confpassword}"
+                                            class="validation-message"></label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">S'inscrire</button>
+                                </div>
+
+                            </form>
+                            <p class="text-center">Vous avez un compte ? <a data-toggle="tab" th:href="@{/login}">Connecter vous</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <th:block th:replace="fragments/_js.html::js"></th:block>
+
+</body>
+
+</html>
