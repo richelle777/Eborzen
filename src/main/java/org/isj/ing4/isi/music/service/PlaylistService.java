@@ -2,13 +2,11 @@ package org.isj.ing4.isi.music.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.isj.ing4.isi.music.PlaylistTitreDto;
-import org.isj.ing4.isi.music.dto.ArtisteDto;
-import org.isj.ing4.isi.music.dto.ArtisteDtoList;
-import org.isj.ing4.isi.music.dto.PlaylistDto;
-import org.isj.ing4.isi.music.dto.TitreDto;
+import org.isj.ing4.isi.music.dto.*;
 import org.isj.ing4.isi.music.mapper.*;
 import org.isj.ing4.isi.music.model.*;
 import org.isj.ing4.isi.music.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,6 +30,9 @@ public class PlaylistService {
     private final PlaylistTitreIdMapper playlistTitreIdMapper;
     private final ArtisteMapper artisteMapper;
     private final ArtisteTitreRepository artisteTitreRepository;
+    @Autowired
+    private UserService userService;
+
 
 
 
@@ -60,7 +61,10 @@ public class PlaylistService {
 
     //pour ajouter une nouvelle playlist
     public PlaylistDto save(PlaylistDto playlistDto) {
+        User user = userService.findUserByEmail(playlistDto.getUser().getEmail());
+        //User user = userMapper.toEntity(userDto);
         Playlist entity = playlistMapper.toEntity(playlistDto);
+        entity.setUser(user);
         return playlistMapper.toDto(playlistrepository.save(entity));
     }
 
