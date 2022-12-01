@@ -19,4 +19,8 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Integer>, Jp
     @Modifying
     @Query(value = "DELETE FROM `playlist` where playlist.id_playlist = :id" , nativeQuery = true)
     void deletePlaylistById(int id);
+
+    @Modifying
+    @Query(value = "DELETE FROM `playlist_titre` where playlist_titre.id_titre = :idT and playlist_titre.id_playlist = :idP" , nativeQuery = true)
+    void deleteMusicOfPlaylistById(int idT , int idP);
 }

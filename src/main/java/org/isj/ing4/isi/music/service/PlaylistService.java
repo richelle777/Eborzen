@@ -97,4 +97,11 @@ public class PlaylistService {
         playlistrepository.deletePlaylistById(id);
         return 1;
     }
+
+    //pour la suppression d'une playlist
+    public int deleteMusicOfPlaylistBy(int idTitre , int idPlaylist) {
+        playlistrepository.deleteMusicOfPlaylistById(idTitre , idPlaylist);
+        return 1;
+    }
+
 }
