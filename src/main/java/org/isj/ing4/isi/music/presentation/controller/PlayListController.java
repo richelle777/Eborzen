@@ -1,6 +1,8 @@
 package org.isj.ing4.isi.music.presentation.controller;
 
+import org.isj.ing4.isi.music.dto.ArtisteDtoList;
 import org.isj.ing4.isi.music.dto.PlaylistDto;
+import org.isj.ing4.isi.music.dto.TitreDto;
 import org.isj.ing4.isi.music.dto.UserDto;
 import org.isj.ing4.isi.music.exception.IsjException;
 import org.isj.ing4.isi.music.model.User;
@@ -63,7 +65,9 @@ public class PlayListController {
     public String pagePlayListMusic(@RequestParam(value = "idp") String idp, Model model) {
         PlaylistDto playlistDto = playlistService.findById(Integer.parseInt(idp));
         model.addAttribute("playlist", playlistDto);
+        List<ArtisteDtoList> titreDtos = playlistService.listMusicOfPlaylist(playlistDto.getId());
         model.addAttribute("id", playlistDto.getId());
+        model.addAttribute("titres", titreDtos);
         return "songs-playlist";
     }
 
@@ -71,9 +75,24 @@ public class PlayListController {
     public String updatePlaylist(@ModelAttribute PlaylistDto playlistDto, Model model) {
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto user = userService.findUserByEmailDto(auth.getName());
+
         playlistDto.setUser(user);
         playlistService.update(playlistDto);
         return "redirect:/mymusic?idp="+playlistDto.getId();
     }
 
+    @GetMapping("/delete/{idp}/{idm}")
+    public String deleteMusic(@PathVariable("idp") String idp, @PathVariable("idm") String idm) {
+        int idplay = Integer.parseInt(idp);
+        int idmusic = Integer.parseInt(idm);
+        playlistService.deleteMusicOfPlaylistBy(idmusic, idplay);
+        return "redirect:/mymusic?id="+idmusic;
+    }
+
+    @GetMapping("/delete-playlist/{idp}")
+    public String deletePlaylist(@PathVariable("idp") String idp) {
+        int idplay = Integer.parseInt(idp);
+        playlistService.deletePlaylistById(idplay);
+        return "redirect:/playlist";
+    }
 }

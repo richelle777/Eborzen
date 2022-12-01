@@ -12,10 +12,10 @@
     <div class="songs-container">
         <div class="row" style="padding-bottom: 3% !important;">
             <div class="col-md-3">
-                <h2>Nom de la playlist</h2>
+                <h2 th:text="${playlist.intitulePlaylist}">Nom de la playlist</h2>
             </div>
             <div class="col-md-9" style="margin-left: -9% !important;">
-                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Modifier</button>
             </div>
         </div>
         <!-- Modal -->
@@ -45,106 +45,29 @@
             </form>
         </div>
         <ul>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Belka tobis</span>
-                        </div>
-                        <div class="trash">
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-remove"></i></button>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Voulez vous vraiment retirer de la playlist ?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <li th:each="titre : ${titres}">
+                <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
+
                 </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Belka tobis</span>
-                        </div>
-                        <div class="trash">
-                            <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Belka tobis</span>
-                        </div>
-                        <div class="trash">
-                            <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Belka tobis</span>
-                        </div>
-                        <div class="trash">
-                            <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Belka tobis</span>
-                        </div>
-                        <div class="trash">
-                            <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
-                        </div>
+                <div class="song">
+                    <div class="imgBox" style="margin-top: 1%;">
+                        <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
+                            <img th:src="@{${titre.titreDto.image}}" alt="">
+                        </a>
 
                     </div>
-                </a>
+                    <div class="content">
+                        <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
+                            <span class="title" th:text="${titre.titreDto.intitule}">title</span>
+                            <span class="artiste" style="display: flex; flex-direction: row;"> <h4 style="padding-right: 10px;" th:each="artiste : ${titre.artisteDtos}" th:text="${artiste.surnom}">Belka tobis</h4> </span>
+
+                        </a>
+                    </div>
+                    <!--    <i class="fa fa-play" style="margin-top: 1%;"></i>-->
+                    <div class="trash">
+                        <a class="btn btn-danger" th:href="@{'/delete/'+${playlist.id}+'/'+${titre.titreDto.id}}"><i class="fa fa-remove"></i></a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

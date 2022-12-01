@@ -1,6 +1,7 @@
 package org.isj.ing4.isi.music.presentation.api;
 
 import lombok.extern.slf4j.Slf4j;
+import org.isj.ing4.isi.music.dto.ArtisteDtoList;
 import org.isj.ing4.isi.music.dto.PlaylistDto;
 import org.isj.ing4.isi.music.dto.TitreDto;
 import org.isj.ing4.isi.music.exception.IsjException;
@@ -64,8 +65,8 @@ public class PlaylistController {
     //   pour afficher les  musiques(titres) d'une plallist
 
     @GetMapping("/allMusicOfPlaylist/{idP}")
-    public ResponseEntity<List<TitreDto>> getAllMusicOfPlaylist(@PathVariable int idP) throws IsjException {
-        List<TitreDto> titreDtos = playlistService.listMusicOfPlaylist(idP);
+    public ResponseEntity<List<ArtisteDtoList>> getAllMusicOfPlaylist(@PathVariable int idP) throws IsjException {
+        List<ArtisteDtoList> titreDtos = playlistService.listMusicOfPlaylist(idP);
         return ResponseEntity.ok(titreDtos);
     }
 
