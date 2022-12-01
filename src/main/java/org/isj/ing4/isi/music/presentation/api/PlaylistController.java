@@ -22,12 +22,19 @@ public class PlaylistController {
         this.playlistService= playlistService;
     }
 
-    //  pour lister les playlists
-    @GetMapping("/all")
-    public ResponseEntity<List<PlaylistDto>> getAll() throws IsjException {
-        List<PlaylistDto> playlistDtos = playlistService.findAll();
+    //  pour lister les playlists d'un user en particulier
+    @GetMapping("/all/{email}")
+    public ResponseEntity<List<PlaylistDto>> getAllOfUser(@PathVariable String email) throws IsjException {
+        List<PlaylistDto> playlistDtos = playlistService.playlistOfUser(email);
         return ResponseEntity.ok(playlistDtos);
     }
+
+    //  pour lister les playlists
+//    @GetMapping("/all")
+//    public ResponseEntity<List<PlaylistDto>> getAll() throws IsjException {
+//        List<PlaylistDto> playlistDtos = playlistService.findAll();
+//        return ResponseEntity.ok(playlistDtos);
+//    }
 
     //  pour ajouter une playlist
     @PostMapping("/save")

@@ -51,4 +51,7 @@ public class PlaylistService {
         playlistMapper.copy(playlistDto , data);
         return  playlistMapper.toDto(repository.save(data));
     }
+    public List<PlaylistDto> playlistOfUser(String email){
+        return repository.findArticleByUser(email).stream().map(playlistMapper::toDto).collect(Collectors.toList());
+    }
 }
