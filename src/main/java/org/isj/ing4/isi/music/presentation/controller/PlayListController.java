@@ -59,20 +59,21 @@ public class PlayListController {
         return "redirect:/play?id="+idmusic;
     }
 
-    @GetMapping("/mymusic/{idp}")
-    public String pagePlayListMusic(@PathVariable(value = "idp") String idp, Model model) throws IsjException {
+    @GetMapping("/mymusic")
+    public String pagePlayListMusic(@RequestParam(value = "idp") String idp, Model model) {
         PlaylistDto playlistDto = playlistService.findById(Integer.parseInt(idp));
         model.addAttribute("playlist", playlistDto);
+        model.addAttribute("id", playlistDto.getId());
         return "songs-playlist";
     }
 
     @PostMapping("/updatePlaylist")
-    public String updatePlaylist(@ModelAttribute PlaylistDto playlistDto, Model model) throws IsjException {
+    public String updatePlaylist(@ModelAttribute PlaylistDto playlistDto, Model model) {
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDto user = userService.findUserByEmailDto(auth.getName());
         playlistDto.setUser(user);
         playlistService.update(playlistDto);
-        return "redirect:/mymusic/"+playlistDto.getId();
+        return "redirect:/mymusic?idp="+playlistDto.getId();
     }
 
 }

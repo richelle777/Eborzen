@@ -32,8 +32,8 @@ public class PlaylistService {
 
 
 
-    public PlaylistDto findById(Integer id) throws IsjException {
-        return playlistMapper.toDto(playlistrepository.findById(id).orElseThrow(() -> new IsjException(ErrorInfo.RESSOURCE_NOT_FOUND)));
+    public PlaylistDto findById(Integer id) {
+        return playlistMapper.toDto(playlistrepository.findById(id).get());
     }
 
     public PlaylistService(PlaylistRepository playlistrepository, PlaylistTitreRepository playlistTitreRepository, PlaylistMapper playlistMapper, UserMapper userMapper, PlaylistTitreMapper playlistTitreMapper, TitreRepository titreRepository, TitreMapper titreMapper, UserRepository userRepository, PlaylistTitreIdMapper playlistTitreIdMapper) {
@@ -60,7 +60,7 @@ public class PlaylistService {
     }
 
     //pour modifier une playlist
-    public PlaylistDto update(PlaylistDto playlistDto) throws IsjException {
+    public PlaylistDto update(PlaylistDto playlistDto) {
         Playlist data = playlistrepository.findById(playlistDto.getId()).get();
         playlistMapper.copy(playlistDto , data);
         return  playlistMapper.toDto(playlistrepository.save(data));

@@ -20,7 +20,7 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <form th:action="@{/updatePlaylist}" th:object="${playlist}">
+            <form th:action="@{/updatePlaylist}" th:method="post" th:object="${playlist}">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -32,6 +32,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label >Nom</label>
+                                <input type="hidden" th:value="${id}" th:field="*{id}" class="form-control ">
                                 <input type="text" th:value="${playlist.intitulePlaylist}" th:field="*{intitulePlaylist}" class="form-control ">
                             </div>
                         </div>
