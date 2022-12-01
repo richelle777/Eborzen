@@ -39,6 +39,7 @@ public class PlayListController {
 		}*/
         model.addAttribute("playlistDto", new PlaylistDto());
         model.addAttribute("playlists", playlistDtos);
+        model.addAttribute("size", playlistDtos.size());
 
         Utils.updateModel(model);
         return "playlist";
@@ -68,6 +69,7 @@ public class PlayListController {
         List<ArtisteDtoList> titreDtos = playlistService.listMusicOfPlaylist(playlistDto.getId());
         model.addAttribute("id", playlistDto.getId());
         model.addAttribute("titres", titreDtos);
+        model.addAttribute("size", titreDtos.size());
         return "songs-playlist";
     }
 
