@@ -88,8 +88,13 @@ public class PlaylistService {
 
     //pour lister les musiques d'une playlist
     public List<TitreDto> listMusicOfPlaylist(int idPlaylist) {
-        System.out.println(titreRepository.findTitreByIdPlaylist(idPlaylist));
         return titreRepository.findTitreByIdPlaylist(idPlaylist).stream().map(titreMapper::toDto).collect(Collectors.toList());
     }
 
+    //pour la suppression d'une playlist
+    public int deletePlaylistById(int id) {
+        playlistTitreRepository.deletePlaylistById(id);
+        playlistrepository.deletePlaylistById(id);
+        return 1;
+    }
 }

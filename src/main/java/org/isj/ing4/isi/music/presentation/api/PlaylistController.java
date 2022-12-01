@@ -69,4 +69,9 @@ public class PlaylistController {
         return ResponseEntity.ok(titreDtos);
     }
 
+    @GetMapping("/deletePlaylist/{idP}")
+    public int deletePlaylist(@PathVariable int idP) throws IsjException {
+        return playlistService.deletePlaylistById(idP);
+    }
+
 }
