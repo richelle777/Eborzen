@@ -1,10 +1,14 @@
 package org.isj.ing4.isi.music.presentation.controller;
 
 import org.isj.ing4.isi.music.dto.ArtisteDtoList;
+import org.isj.ing4.isi.music.dto.PlaylistDto;
 import org.isj.ing4.isi.music.exception.IsjException;
+import org.isj.ing4.isi.music.service.PlaylistService;
 import org.isj.ing4.isi.music.service.TitreService;
 import org.isj.ing4.isi.music.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +22,8 @@ public class GeneralController {
 
     @Autowired
     TitreService titreService;
+    @Autowired
+    PlaylistService playlistService;
 
     @GetMapping("/")
     public String pageAccueil(Model model) {
@@ -44,21 +50,15 @@ public class GeneralController {
         return "songs";
     }
 
-    @GetMapping("/playlist")
-    public String pagePlaylist(Model model) {
 
-		/*if(user != null) {
-			session.setAttribute("userName",  user.getName() + " " + user.getLastName());
-		} else {
-			session.setAttribute("userName",  "");
-		}*/
-        Utils.updateModel(model);
-        return "playlist";
-    }
 
     @GetMapping("/play")
     public String pagePlay(@RequestParam(value = "id", defaultValue = "") int id, Model model) throws IsjException {
-
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.isAuthenticated()) {
+            List<PlaylistDto> playlistDtos = playlistService.playlistOfUser(auth.getName());
+            model.addAttribute("playlists", playlistDtos);
+        }
 		/*if(user != null) {
 			session.setAttribute("userName",  user.getName() + " " + user.getLastName());
 		} else {
@@ -83,10 +83,7 @@ public class GeneralController {
         return "search-songs";
     }
 
-    @GetMapping("/mymusic")
-    public String pagePlayListMusic(Model model) {
-        return "songs-playlist";
-    }
+
 
 
 }

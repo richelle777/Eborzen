@@ -15,10 +15,10 @@
                         <a class="nav-link" th:href="@{/}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/playlist}">Playlist</a>
+                        <a class="nav-link" th:href="@{/playlist}">Playlists</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/songs}">Ma musique</a>
+                        <a class="nav-link" th:href="@{/songs}">Musiques</a>
                     </li>
                     <li class="nav-item">
                         <div class="search_icon search">
@@ -31,7 +31,18 @@
                         </div>
                     </li>
                 </ul>
-                <div class="search_icon"><a th:href="@{/login}"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">login</span></a></div>
+                <div class="search_icon">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a th:href="@{/login}" sec:authorize="!isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Connexion</span></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a th:href="@{/register}" sec:authorize="!isAuthenticated()"><span class="padding_left_15">Inscription</span></a>
+                        </div>
+                    </div>
+                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Déconnexion</span></a>
+
+                </div>
             </div>
         </nav>
     </div>

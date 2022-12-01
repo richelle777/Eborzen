@@ -912,10 +912,18 @@ input.email_text::placeholder {
 }
 
 .title {
-    margin-top: 5%;
+    margin-top: 0%;
 }
 
 .add-play {
     width: 63%;
     padding-bottom: 2%;
+}
+
+.login {
+    margin-top: 6%;
+}
+
+.add-music {
+    margin-top: 7%;
 }

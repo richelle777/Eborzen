@@ -37,6 +37,10 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 
+	public UserDto findUserByEmailDto(String email) {
+		return userMapper.toDto(userRepository.findByEmail(email));
+	}
+
 	public User saveClient(UserDto userdto) {
 
 		User user = new User();

@@ -10,78 +10,55 @@
 
 
     <div class="songs-container">
-        <h2>Mes playlists</h2>
-        <ul>
-            <li>
-                <a href="play.html">
+
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Mes playlists</h2>
+            </div>
+            <div class="col-md-4" style="margin-left: -13%">
+                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Ajouter</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <form th:action="@{/addPlaylist}" th:method="post" th:object="${playlistDto}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Créer une playlist</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label >Titre</label>
+                                        <input type="text" th:field="*{intitulePlaylist}" class="form-control ">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" >Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ul class="mt-3">
+            <li th:each="playlist : ${playlists}">
+                <a  th:href="@{'/mymusic/'+${playlist.id}}" >
                     <div class="song">
                         <div class="imgBox">
                             <img src="images/img-4.png" alt="">
                         </div>
                         <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Playlists etienne honoré</span>
+                            <span class="title" th:text="${playlist.intitulePlaylist}">title</span>
+                            <span class="author" th:text="${'Playlist ' + playlist.user.name}">Playlists etienne honoré</span>
                         </div>
                         <i class="fa fa-play"></i>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Playlists etienne honoré</span>
-                        </div>
-                        <i class="fa fa-play"></i>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Playlists etienne honoré</span>
-                        </div>
-                        <i class="fa fa-play"></i>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/mymusic}">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Playlists etienne honoré</span>
-                        </div>
-                        <i class="fa fa-play"></i>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="play.html">
-                    <div class="song">
-                        <div class="imgBox">
-                            <img src="images/img-4.png" alt="">
-                        </div>
-                        <div class="content">
-                            <span class="title">title</span>
-                            <span class="author">Playlists etienne honoré</span>
-                        </div>
-                        <i class="fa fa-play"></i>
-                    </div>
-                </a>
-            </li>
+
         </ul>
     </div>
 
