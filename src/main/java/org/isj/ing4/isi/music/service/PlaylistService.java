@@ -2,16 +2,17 @@ package org.isj.ing4.isi.music.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.isj.ing4.isi.music.PlaylistTitreDto;
+import org.isj.ing4.isi.music.dto.ArtisteDto;
+import org.isj.ing4.isi.music.dto.ArtisteDtoList;
 import org.isj.ing4.isi.music.dto.PlaylistDto;
 import org.isj.ing4.isi.music.dto.TitreDto;
-import org.isj.ing4.isi.music.exception.ErrorInfo;
-import org.isj.ing4.isi.music.exception.IsjException;
 import org.isj.ing4.isi.music.mapper.*;
 import org.isj.ing4.isi.music.model.*;
 import org.isj.ing4.isi.music.repository.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,8 @@ public class PlaylistService {
     private  final UserRepository userRepository;
     private final PlaylistTitreMapper playlistTitreMapper;
     private final PlaylistTitreIdMapper playlistTitreIdMapper;
+    private final ArtisteMapper artisteMapper;
+    private final ArtisteTitreRepository artisteTitreRepository;
 
 
 
@@ -36,7 +39,7 @@ public class PlaylistService {
         return playlistMapper.toDto(playlistrepository.findById(id).get());
     }
 
-    public PlaylistService(PlaylistRepository playlistrepository, PlaylistTitreRepository playlistTitreRepository, PlaylistMapper playlistMapper, UserMapper userMapper, PlaylistTitreMapper playlistTitreMapper, TitreRepository titreRepository, TitreMapper titreMapper, UserRepository userRepository, PlaylistTitreIdMapper playlistTitreIdMapper) {
+    public PlaylistService(PlaylistRepository playlistrepository, PlaylistTitreRepository playlistTitreRepository, PlaylistMapper playlistMapper, UserMapper userMapper, PlaylistTitreMapper playlistTitreMapper, TitreRepository titreRepository, TitreMapper titreMapper, UserRepository userRepository, PlaylistTitreIdMapper playlistTitreIdMapper, ArtisteMapper artisteMapper, ArtisteTitreRepository artisteTitreRepository) {
         this.playlistrepository = playlistrepository;
         this.playlistTitreRepository = playlistTitreRepository;
 //        this.playlistTitreIdRepository = playlistTitreIdRepository;
@@ -47,6 +50,8 @@ public class PlaylistService {
         this.titreMapper = titreMapper;
         this.userRepository = userRepository;
         this.playlistTitreIdMapper = playlistTitreIdMapper;
+        this.artisteMapper = artisteMapper;
+        this.artisteTitreRepository = artisteTitreRepository;
     }
 
     public List<PlaylistDto> findAll() {
@@ -87,8 +92,20 @@ public class PlaylistService {
     }
 
     //pour lister les musiques d'une playlist
-    public List<TitreDto> listMusicOfPlaylist(int idPlaylist) {
-        return titreRepository.findTitreByIdPlaylist(idPlaylist).stream().map(titreMapper::toDto).collect(Collectors.toList());
+    public List<ArtisteDtoList> listMusicOfPlaylist(int idPlaylist) {
+        List<TitreDto> titres =  titreRepository.findTitreByIdPlaylist(idPlaylist).stream().map(titreMapper::toDto).collect(Collectors.toList());
+        List<ArtisteDtoList> artisteDtoLists = new ArrayList<ArtisteDtoList>();
+        titres.forEach((titre) -> {
+            Titre entity = titreMapper.toEntity(titre);
+            List<ArtisteTitre> artisteTitres = artisteTitreRepository.findByIdtitre(entity);
+            List<ArtisteDto> artisteDtos = new ArrayList<>();
+            artisteTitres.forEach((artisteTitre) -> {
+                artisteDtos.add(artisteMapper.toDto(artisteTitre.getIdartiste()));
+            });
+
+            artisteDtoLists.add(new ArtisteDtoList(titre,artisteDtos));
+        });
+        return artisteDtoLists;
     }
 
     //pour la suppression d'une playlist

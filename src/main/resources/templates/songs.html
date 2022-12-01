@@ -39,7 +39,7 @@
     </div>-->
 
     <div class="songs-container">
-        <h2>Ma musique</h2>
+        <h3>Musiques</h3>
         <ul>
             <li th:each="titre : ${titres}">
                 <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
