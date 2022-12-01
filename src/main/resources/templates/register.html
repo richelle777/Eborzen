@@ -3,17 +3,16 @@
 
 <head>
     <th:block th:replace="fragments/_head.html::head"></th:block>
-
 </head>
-
 <body>
+<th:block th:replace="fragments/_header.html::header"></th:block>
     <section class="ftco-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <a class="logo2" href="index.html"><img src="images/logo2.png"></a>
-                </div>
-            </div>
+<!--            <div class="row justify-content-center">-->
+<!--&lt;!&ndash;                <div class="col-md-6 text-center mb-5">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="logo2" href="index.html"><img src="images/logo2.png"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <div class="wrap d-md-flex">
@@ -33,29 +32,29 @@
                             </div>
                             <form  class="signin-form" th:action="@{/registration}" method="POST" th:object="${user}">
                                 <div class="form-group mb-3">
-                                    <label class="label" for="name">Nom</label>
+                                    <label class="label" >Nom</label>
                                     <input type="text" class="form-control" th:field="*{name}" placeholder="Nom" required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="name">Prenom</label>
+                                    <label class="label" >Prenom</label>
                                     <input type="text" class="form-control" th:field="*{lastName}" placeholder="Prénom" required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="name">Email</label>
+                                    <label class="label" >Email</label>
                                     <input type="text" class="form-control" th:field="*{email}" placeholder="Email" required>
                                     <label
                                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                                             class="validation-message"></label>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="password">Mot de passe</label>
+                                    <label class="label" >Mot de passe</label>
                                     <input type="password" class="form-control" th:field="*{password}" placeholder="Mot de passe" required>
                                     <label
                                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                                             class="validation-message"></label>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="password">Confirmer le mot de passe</label>
+                                    <label class="label" >Confirmer le mot de passe</label>
                                     <input type="password" class="form-control" th:field="*{confpassword}" placeholder="Mot de passe" required>
                                     <label
                                             th:if="${#fields.hasErrors('confpassword')}" th:errors="*{confpassword}"

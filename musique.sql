@@ -1,24 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : lun. 28 nov. 2022 à 15:23
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Client :  127.0.0.1
+-- Généré le :  Mar 29 Novembre 2022 à 05:16
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de données : `musique`
+-- Base de données :  `musique`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +26,6 @@ SET time_zone = "+00:00";
 -- Structure de la table `album`
 --
 
-DROP TABLE IF EXISTS `album`;
 CREATE TABLE IF NOT EXISTS `album` (
   `id_album` int(11) NOT NULL AUTO_INCREMENT,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -35,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `album` (
   `nom` varchar(50) NOT NULL,
   `image` longblob NOT NULL,
   PRIMARY KEY (`id_album`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Déchargement des données de la table `album`
+-- Contenu de la table `album`
 --
 
 INSERT INTO `album` (`id_album`, `date`, `producteur`, `nom`, `image`) VALUES
@@ -50,7 +48,6 @@ INSERT INTO `album` (`id_album`, `date`, `producteur`, `nom`, `image`) VALUES
 -- Structure de la table `artiste`
 --
 
-DROP TABLE IF EXISTS `artiste`;
 CREATE TABLE IF NOT EXISTS `artiste` (
   `id_artiste` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) NOT NULL,
@@ -60,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `artiste` (
   `tel` varchar(50) NOT NULL,
   `profil` longblob NOT NULL,
   PRIMARY KEY (`id_artiste`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Déchargement des données de la table `artiste`
+-- Contenu de la table `artiste`
 --
 
 INSERT INTO `artiste` (`id_artiste`, `nom`, `prenom`, `surnom`, `email`, `tel`, `profil`) VALUES
@@ -83,7 +80,6 @@ INSERT INTO `artiste` (`id_artiste`, `nom`, `prenom`, `surnom`, `email`, `tel`, 
 -- Structure de la table `artiste_album`
 --
 
-DROP TABLE IF EXISTS `artiste_album`;
 CREATE TABLE IF NOT EXISTS `artiste_album` (
   `id_artiste` int(11) NOT NULL,
   `id_album` int(11) NOT NULL,
@@ -98,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `artiste_album` (
 -- Structure de la table `artiste_titre`
 --
 
-DROP TABLE IF EXISTS `artiste_titre`;
 CREATE TABLE IF NOT EXISTS `artiste_titre` (
   `id_artiste` int(11) NOT NULL,
   `id_titre` int(11) NOT NULL,
@@ -108,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `artiste_titre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `artiste_titre`
+-- Contenu de la table `artiste_titre`
 --
 
 INSERT INTO `artiste_titre` (`id_artiste`, `id_titre`) VALUES
@@ -123,13 +118,12 @@ INSERT INTO `artiste_titre` (`id_artiste`, `id_titre`) VALUES
 -- Structure de la table `hibernate_sequence`
 --
 
-DROP TABLE IF EXISTS `hibernate_sequence`;
 CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `hibernate_sequence`
+-- Contenu de la table `hibernate_sequence`
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
@@ -138,18 +132,61 @@ INSERT INTO `hibernate_sequence` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `playlist`
+--
+
+CREATE TABLE IF NOT EXISTS `playlist` (
+  `id_playlist` int(11) NOT NULL,
+  `intitule_playlist` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_playlist`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `playlist`
+--
+
+INSERT INTO `playlist` (`id_playlist`, `intitule_playlist`, `user_id`) VALUES
+(1, 'Dadju my love', 2),
+(2, 'Tayc playlist', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `playlist_titre`
+--
+
+CREATE TABLE IF NOT EXISTS `playlist_titre` (
+  `id_titre` int(11) NOT NULL,
+  `id_playlist` int(11) NOT NULL,
+  PRIMARY KEY (`id_titre`,`id_playlist`),
+  KEY `id_playlist` (`id_playlist`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `playlist_titre`
+--
+
+INSERT INTO `playlist_titre` (`id_titre`, `id_playlist`) VALUES
+(1, 1),
+(1, 2),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Déchargement des données de la table `role`
+-- Contenu de la table `role`
 --
 
 INSERT INTO `role` (`role_id`, `role`) VALUES
@@ -161,7 +198,6 @@ INSERT INTO `role` (`role_id`, `role`) VALUES
 -- Structure de la table `titre`
 --
 
-DROP TABLE IF EXISTS `titre`;
 CREATE TABLE IF NOT EXISTS `titre` (
   `id_titre` int(11) NOT NULL AUTO_INCREMENT,
   `intitule` varchar(50) NOT NULL,
@@ -174,10 +210,10 @@ CREATE TABLE IF NOT EXISTS `titre` (
   `duree` varchar(10) NOT NULL,
   PRIMARY KEY (`id_titre`),
   KEY `id_album` (`id_album`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Déchargement des données de la table `titre`
+-- Contenu de la table `titre`
 --
 
 INSERT INTO `titre` (`id_titre`, `intitule`, `date`, `id_album`, `audio`, `paroles`, `video`, `image`, `duree`) VALUES
@@ -190,7 +226,6 @@ INSERT INTO `titre` (`id_titre`, `intitule`, `date`, `id_album`, `audio`, `parol
 -- Structure de la table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL,
   `active` int(11) DEFAULT NULL,
@@ -201,10 +236,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) DEFAULT NULL,
   `validate_email` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `user`
+-- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`user_id`, `active`, `confpassword`, `email`, `last_name`, `name`, `password`, `validate_email`) VALUES
@@ -216,7 +251,6 @@ INSERT INTO `user` (`user_id`, `active`, `confpassword`, `email`, `last_name`, `
 -- Structure de la table `usererdfmjjjklqfjkl`
 --
 
-DROP TABLE IF EXISTS `usererdfmjjjklqfjkl`;
 CREATE TABLE IF NOT EXISTS `usererdfmjjjklqfjkl` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `active` int(11) DEFAULT NULL,
@@ -227,10 +261,10 @@ CREATE TABLE IF NOT EXISTS `usererdfmjjjklqfjkl` (
   `validate_email` int(11) DEFAULT NULL,
   `confpassword` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Déchargement des données de la table `usererdfmjjjklqfjkl`
+-- Contenu de la table `usererdfmjjjklqfjkl`
 --
 
 INSERT INTO `usererdfmjjjklqfjkl` (`user_id`, `active`, `email`, `last_name`, `name`, `password`, `validate_email`, `confpassword`) VALUES
@@ -242,16 +276,15 @@ INSERT INTO `usererdfmjjjklqfjkl` (`user_id`, `active`, `email`, `last_name`, `n
 -- Structure de la table `user_role`
 --
 
-DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `user_role`
+-- Contenu de la table `user_role`
 --
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
@@ -259,7 +292,7 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (2, 1);
 
 --
--- Contraintes pour les tables déchargées
+-- Contraintes pour les tables exportées
 --
 
 --
@@ -277,11 +310,23 @@ ALTER TABLE `artiste_titre`
   ADD CONSTRAINT `artiste_titre_ibfk_2` FOREIGN KEY (`id_titre`) REFERENCES `titre` (`id_titre`);
 
 --
+-- Contraintes pour la table `playlist`
+--
+ALTER TABLE `playlist`
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Contraintes pour la table `playlist_titre`
+--
+ALTER TABLE `playlist_titre`
+  ADD CONSTRAINT `playlist_titre_ibfk_2` FOREIGN KEY (`id_playlist`) REFERENCES `playlist` (`id_playlist`),
+  ADD CONSTRAINT `playlist_titre_ibfk_1` FOREIGN KEY (`id_titre`) REFERENCES `titre` (`id_titre`);
+
+--
 -- Contraintes pour la table `titre`
 --
 ALTER TABLE `titre`
   ADD CONSTRAINT `titre_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `album` (`id_album`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

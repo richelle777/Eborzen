@@ -7,9 +7,7 @@ import org.isj.ing4.isi.music.model.Artiste;
 import org.isj.ing4.isi.music.model.ArtisteTitreId;
 import org.isj.ing4.isi.music.model.Titre;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class ArtisteTitreDto extends AbstractDto<ArtisteTitreId> {
     private ArtisteDto idArtiste;
     private TitreDto idTitre;

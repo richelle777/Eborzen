@@ -217,7 +217,7 @@ button {
 }
 
 .layout_padding {
-    padding-top: 90px;
+    padding-top: 150px;
     padding-bottom: 0px;
 }
 
@@ -267,7 +267,11 @@ button {
 
 
 
-
+.navbar{
+    position: fixed;
+    z-index: 9;
+    width: 100%;
+}
 .navbar-light .navbar-nav .active>.nav-link,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
