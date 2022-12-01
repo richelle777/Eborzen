@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 01 déc. 2022 à 19:28
+-- Généré le : jeu. 01 déc. 2022 à 21:38
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(9);
+(17);
 
 -- --------------------------------------------------------
 
@@ -148,14 +148,14 @@ CREATE TABLE IF NOT EXISTS `playlist` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id_playlist`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `playlist`
 --
 
 INSERT INTO `playlist` (`id_playlist`, `intitule_playlist`, `user_id`) VALUES
-(1, 'Bolé', 4);
+(6, 'benskin', 4);
 
 -- --------------------------------------------------------
 
@@ -171,13 +171,6 @@ CREATE TABLE IF NOT EXISTS `playlist_titre` (
   KEY `id_playlist` (`id_playlist`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `playlist_titre`
---
-
-INSERT INTO `playlist_titre` (`id_playlist`, `id_titre`) VALUES
-(2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -189,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `role`
@@ -199,7 +192,12 @@ INSERT INTO `role` (`role_id`, `role`) VALUES
 (1, 'client_ddd_@dd'),
 (6, 'client_ddd_@dd'),
 (7, 'client_ddd_@dd'),
-(8, 'client_ddd_@dd');
+(8, 'client_ddd_@dd'),
+(9, 'client_ddd_@dd'),
+(10, 'client_ddd_@dd'),
+(12, 'client_ddd_@dd'),
+(14, 'client_ddd_@dd'),
+(16, 'client_ddd_@dd');
 
 -- --------------------------------------------------------
 
@@ -227,8 +225,8 @@ CREATE TABLE IF NOT EXISTS `titre` (
 --
 
 INSERT INTO `titre` (`id_titre`, `intitule`, `date`, `id_album`, `audio`, `paroles`, `video`, `image`, `duree`) VALUES
-(1, 'MHD-ft-Dadju-Bebe', '2022-11-09', 1, '/musique/MHD-ft-Dadju-Bebe-www.republikville.com.mp3', 'fdgdg vsdfsdf  dsfdsfdsf dfdsfdsfd fdsf', '/musique/MHD-ft-Dadju-Bebe-www.republikville.com.mp3', '/images/bebe-mhd-dadju.jpg', '4:25'),
-(2, 'Magic System - 1er Gaou', '2022-11-09', 1, '/musique/Magic System - 1er Gaou.mp3', 'gfdgfg', '', '/images/1er-gaou.jpg', '3:40');
+(1, 'MHD-ft-Dadju-Bebe', '2022-11-09', 1, '/musique/MHD-ft-Dadju-Bebe-www.republikville.com.mp3', 'fdgdg vsdfsdf  dsfdsfdsf dfdsfdsfd fdsf', 'https://www.youtube.com/embed/xO2y82caN4U', '/images/bebe-mhd-dadju.jpg', '4:25'),
+(2, 'Magic System - 1er Gaou', '2022-11-09', 1, '/musique/Magic System - 1er Gaou.mp3', 'gfdgfg', 'https://www.youtube.com/embed/CKUZ-ZIUiwg', '/images/1er-gaou.jpg', '3:40');
 
 -- --------------------------------------------------------
 
@@ -303,7 +301,10 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 1),
 (2, 1),
-(4, 8);
+(4, 10),
+(11, 12),
+(13, 14),
+(15, 16);
 
 --
 -- Contraintes pour les tables déchargées
