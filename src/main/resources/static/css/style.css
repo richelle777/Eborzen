@@ -906,3 +906,16 @@ input.email_text::placeholder {
 .copyright_text a:hover {
     color: #d89616;
 }
+
+.trash {
+    margin-top: 1% !important;
+}
+
+.title {
+    margin-top: 5%;
+}
+
+.add-play {
+    width: 63%;
+    padding-bottom: 2%;
+}
