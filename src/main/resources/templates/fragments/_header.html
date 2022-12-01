@@ -1,15 +1,16 @@
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="header">
 
     <!-- header section start -->
     <div class="header_section">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="logo" href="index.html"><img src="images/logo2.png"></a>
+            <a class="logo" th:href="@{/}"><img src="images/logo2.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-between flex" id="navbarSupportedContent">
+                <div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" th:href="@{/}">Home</a>
@@ -25,23 +26,16 @@
                             <a href="#"><img th:src="@{/images/search-icon.png}"></a>
                             <form th:action="searchsong" method="post" style="width: 67%;margin-left: -45%;">
                                 <input type="text" name="key" th:value = "${key}" placeholder="Rechercher ...">
-
                             </form>
 
                         </div>
                     </li>
                 </ul>
+                </div>
                 <div class="search_icon">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a th:href="@{/login}" sec:authorize="!isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Connexion</span></a>
-                        </div>
-                        <div class="col-md-6">
-                            <a th:href="@{/register}" sec:authorize="!isAuthenticated()"><span class="padding_left_15">Inscription</span></a>
-                        </div>
-                    </div>
-                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Déconnexion</span></a>
+                    <a th:href="@{/login}" sec:authorize="!isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Connexion</span></a>
 
+                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Déconnexion</span></a>
                 </div>
             </div>
         </nav>

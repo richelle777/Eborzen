@@ -71,9 +71,15 @@ public class PlaylistController {
 
     //   pour supprimer une musique dans une playlist
     @GetMapping("/deleteMusicFromPlaylist/{idT}/{idP}")
-    public int deletePlaylist(@PathVariable int idT , @PathVariable int idP) throws IsjException {
+    public int deleteMusicFromPlaylist(@PathVariable int idT , @PathVariable int idP) throws IsjException {
         return playlistService.deleteMusicOfPlaylistBy(idT , idP);
     }
+
+    //   pour rechercher une musique dans une playlist
+//    @GetMapping("/deleteMusicFromPlaylist/{idT}/{idP}")
+//    public int deletePlaylist(@PathVariable int idT , @PathVariable int idP) throws IsjException {
+//        return playlistService.deleteMusicOfPlaylistBy(idT , idP);
+//    }
 
 
 

@@ -37,7 +37,9 @@
     box-sizing: border-box !important;
     transition: ease all 0.5s;
 }
-
+.btn-add{
+    background-color: #3c0e0e!important;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -220,6 +222,12 @@ button {
     padding-top: 150px;
     padding-bottom: 0px;
 }
+.layout_padding2 {
+    padding-top: 80px;
+    padding-bottom: 0px;
+    padding-right: 200px;
+    margin: 100px;
+}
 
 .padding_0 {
     padding: 0px;
@@ -265,12 +273,19 @@ button {
 
 
 
-
+.banner-section2{
+    width: 100%;
+    float: left;
+   /* background: linear-gradient(110deg, #3c0e0e 55%, rgba(60, 90, 90, 0) 55%), url(../images/banner-bg.png);*/
+    position: relative;
+    padding-bottom: 90px;
+}
 
 .navbar{
     position: fixed;
     z-index: 9;
     width: 100%;
+    box-shadow: 2px 2px #3c0e0e !important;
 }
 .navbar-light .navbar-nav .active>.nav-link,
 .navbar-light .navbar-nav .nav-link.active,

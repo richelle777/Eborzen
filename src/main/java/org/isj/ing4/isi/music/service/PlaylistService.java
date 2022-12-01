@@ -104,4 +104,10 @@ public class PlaylistService {
         return 1;
     }
 
+    //pour la recherche d'une musique dans une playlist
+//    public int searchMusicOfPlaylistBy(int idTitre , int idPlaylist) {
+//        playlistrepository.deleteMusicOfPlaylistById(idTitre , idPlaylist);
+//        return 1;
+//    }
+
 }

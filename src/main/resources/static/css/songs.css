@@ -10,8 +10,8 @@
 }
 
 .songs-container ul li {
-  -webkit-box-shadow: 0 0 4px #ffb7b7;
-          box-shadow: 0 0 4px #ffb7b7;
+  -webkit-box-shadow: 0 0 5px #3c0e0e;
+          box-shadow: 0 0 5px #3c0e0e;
   border-radius: 12px;
   padding: .5rem 2rem;
 }
