@@ -28,8 +28,6 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "confpassword")
-    private String confpassword;
     @Column(name = "name")
     @NotEmpty(message = "*Please provide your name")
     private String name;

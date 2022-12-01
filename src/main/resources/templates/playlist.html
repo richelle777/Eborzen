@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/_head.html::head"></th:block>
+</head>
+
+<body>
+    <th:block th:replace="fragments/_header.html::header"></th:block>
+
+
+    <div class="songs-container">
+        <h2>Mes playlists</h2>
+        <ul>
+            <li>
+                <a href="play.html">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img src="images/img-4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title">title</span>
+                            <span class="author">Playlists etienne honoré</span>
+                        </div>
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="play.html">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img src="images/img-4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title">title</span>
+                            <span class="author">Playlists etienne honoré</span>
+                        </div>
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="play.html">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img src="images/img-4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title">title</span>
+                            <span class="author">Playlists etienne honoré</span>
+                        </div>
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/mymusic}">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img src="images/img-4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title">title</span>
+                            <span class="author">Playlists etienne honoré</span>
+                        </div>
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="play.html">
+                    <div class="song">
+                        <div class="imgBox">
+                            <img src="images/img-4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <span class="title">title</span>
+                            <span class="author">Playlists etienne honoré</span>
+                        </div>
+                        <i class="fa fa-play"></i>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+    <th:block th:replace="fragments/_footer.html::footer"></th:block>
+
+    <th:block th:replace="fragments/_js.html::js"></th:block>
+</body>
+
+</html>

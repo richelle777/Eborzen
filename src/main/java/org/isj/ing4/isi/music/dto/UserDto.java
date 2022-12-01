@@ -1,7 +1,5 @@
 package org.isj.ing4.isi.music.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserDto {
     private String email;
-    @JsonIgnore
     private String password;
-    @JsonIgnore
-    private String confpassword;
     private String name;
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")

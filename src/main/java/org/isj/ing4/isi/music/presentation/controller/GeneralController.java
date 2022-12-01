@@ -53,7 +53,7 @@ public class GeneralController {
 			session.setAttribute("userName",  "");
 		}*/
         Utils.updateModel(model);
-        return "movies";
+        return "playlist";
     }
 
     @GetMapping("/play")
@@ -81,6 +81,11 @@ public class GeneralController {
         Utils.updateModelWithValue(model, key);
         model.addAttribute("titres", artisteDtoLists);
         return "search-songs";
+    }
+
+    @GetMapping("/mymusic")
+    public String pagePlayListMusic(Model model) {
+        return "songs-playlist";
     }
 
 

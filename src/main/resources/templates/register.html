@@ -54,11 +54,11 @@
                                             class="validation-message"></label>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" >Confirmer le mot de passe</label>
-                                    <input type="password" class="form-control" th:field="*{confpassword}" placeholder="Mot de passe" required>
-                                    <label
-                                            th:if="${#fields.hasErrors('confpassword')}" th:errors="*{confpassword}"
-                                            class="validation-message"></label>
+                                    <label class="label" for="confpassword">Confirmer le mot de passe</label>
+                                    <input type="password" class="form-control"  id="confpassword" placeholder="Mot de passe" required>
+                             <!--       <label
+
+                                            class="validation-message"></label>-->
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">S'inscrire</button>
