@@ -61,12 +61,20 @@ public class PlaylistController {
         return ResponseEntity.ok().build();
     }
 
-    //   pour afficher les  musiques(titres) d'une palylist
+    //   pour afficher les  musiques(titres) d'une plallist
 
     @GetMapping("/allMusicOfPlaylist/{idP}")
     public ResponseEntity<List<TitreDto>> getAllMusicOfPlaylist(@PathVariable int idP) throws IsjException {
         List<TitreDto> titreDtos = playlistService.listMusicOfPlaylist(idP);
         return ResponseEntity.ok(titreDtos);
     }
+
+    //   pour supprimer une musique dans une playlist
+    @GetMapping("/deleteMusicFromPlaylist/{idT}/{idP}")
+    public int deletePlaylist(@PathVariable int idT , @PathVariable int idP) throws IsjException {
+        return playlistService.deleteMusicOfPlaylistBy(idT , idP);
+    }
+
+
 
 }
