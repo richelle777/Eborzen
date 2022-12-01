@@ -5,7 +5,9 @@ import org.isj.ing4.isi.music.dto.PlaylistDto;
 import org.isj.ing4.isi.music.dto.TitreDto;
 import org.isj.ing4.isi.music.exception.IsjException;
 import org.isj.ing4.isi.music.service.PlaylistService;
+import org.isj.ing4.isi.music.service.PlaylistTitreService;
 import org.isj.ing4.isi.music.service.TitreService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.List;
 @Slf4j
 public class PlaylistController {
     private final PlaylistService playlistService;
+
+    private PlaylistTitreService playlistTitreService;
 
     public PlaylistController(PlaylistService playlistService) {
         this.playlistService= playlistService;
@@ -50,8 +54,19 @@ public class PlaylistController {
         return ResponseEntity.ok().build();
     }
 
+    //pour ajouter une musique dans une playlist
+    @PostMapping("/saveToPlaylist/{idM}/{idP}")
+    public ResponseEntity<Void> save(@PathVariable int idM , @PathVariable int idP) {
+        playlistService.addMusicToPlaylist(idM , idP);
+        return ResponseEntity.ok().build();
+    }
+
     //   pour afficher les  musiques(titres) d'une palylist
 
-
+    @GetMapping("/allMusicOfPlaylist/{idP}")
+    public ResponseEntity<List<TitreDto>> getAllMusicOfPlaylist(@PathVariable int idP) throws IsjException {
+        List<TitreDto> titreDtos = playlistService.listMusicOfPlaylist(idP);
+        return ResponseEntity.ok(titreDtos);
+    }
 
 }
