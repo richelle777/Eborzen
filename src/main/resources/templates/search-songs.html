@@ -38,10 +38,10 @@
         </ul>
     </div>-->
 
-    <div class="songs-container">
+    <div class="songs-container layout_padding2 banner-section2">
         <h2>Ma musique</h2>
         <ul>
-            <li th:each="titre : ${titres}">
+            <li th:each="titre : ${titres}" class="mt-2">
                 <a th:href="@{'/play?id=' + ${titre.titreDto.id}}">
                     <div class="song">
                         <div class="imgBox" style="margin-top: 1%;">

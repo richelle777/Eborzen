@@ -37,8 +37,25 @@
     box-sizing: border-box !important;
     transition: ease all 0.5s;
 }
+.choose-play{
+    background-color: #e3dcdc;
+    padding: 20px;
+    border-radius: 30px;
+}
+.choose-play:hover{
+    background-color: #3c0e0e;
+    padding: 20px;
+    border-radius: 30px;
+}
+.choose-play a:hover{
+    text-color: white!important;
+    color: white!important;
+}
 .btn-add{
     background-color: #3c0e0e!important;
+}
+.btn-add:hover{
+ background-color: #3c0e0e!important;
 }
 html {
     scroll-behavior: smooth;

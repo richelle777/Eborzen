@@ -35,7 +35,7 @@
                 <div class="search_icon">
                     <a th:href="@{/login}" sec:authorize="!isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Connexion</span></a>
 
-                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span class="padding_left_15">Déconnexion</span></a>
+                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()"><img th:src="@{/images/user-icon.png}"><span th:text="${session.userName}">test</span><span class="padding_left_15">Déconnexion</span></a>
                 </div>
             </div>
         </nav>

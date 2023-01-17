@@ -10,6 +10,7 @@ import org.isj.ing4.isi.music.mapper.ArtisteMapper;
 import org.isj.ing4.isi.music.mapper.TitreMapper;
 import org.isj.ing4.isi.music.model.ArtisteTitre;
 import org.isj.ing4.isi.music.model.Titre;
+import org.isj.ing4.isi.music.model.User;
 import org.isj.ing4.isi.music.repository.ArtisteTitreRepository;
 import org.isj.ing4.isi.music.repository.TitreRepository;
 import org.mapstruct.factory.Mappers;
@@ -35,6 +36,8 @@ public class TitreService {
     private final TitreMapper titreMapper;
     private final ArtisteMapper artisteMapper;
     private final ArtisteTitreRepository artisteTitreRepository;
+    @Autowired
+    UserService userService;
 
     public TitreService(TitreRepository repository, TitreMapper titreMapper, ArtisteMapper artisteMapper, ArtisteTitreRepository artisteTitreRepository) {
         this.repository = repository;
@@ -92,6 +95,25 @@ public class TitreService {
 
     public List<ArtisteDtoList> getSongByArtisteOrTitle(String mot) {
         List<TitreDto> titres = repository.searchByArtisteOrSong(mot).stream().map(titreMapper::toDto).collect(Collectors.toList());
+        List<ArtisteDtoList> artisteDtoLists = new ArrayList<ArtisteDtoList>();
+        titres.forEach((titre) -> {
+            Titre entity = titreMapper.toEntity(titre);
+            List<ArtisteTitre> artisteTitres = artisteTitreRepository.findByIdtitre(entity);
+            List<ArtisteDto> artisteDtos = new ArrayList<>();
+            artisteTitres.forEach((artisteTitre) -> {
+                artisteDtos.add(artisteMapper.toDto(artisteTitre.getIdartiste()));
+            });
+
+            artisteDtoLists.add(new ArtisteDtoList(titre,artisteDtos));
+        });
+
+        return artisteDtoLists;
+    }
+
+
+    public List<ArtisteDtoList> getMusicHistoryUser(String email) {
+        User user = userService.findUserByEmail(email);
+        List<TitreDto> titres = repository.findHistoriqueTitreByUser(user.getId()).stream().map(titreMapper::toDto).collect(Collectors.toList());;
         List<ArtisteDtoList> artisteDtoLists = new ArrayList<ArtisteDtoList>();
         titres.forEach((titre) -> {
             Titre entity = titreMapper.toEntity(titre);

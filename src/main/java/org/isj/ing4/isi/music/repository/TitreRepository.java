@@ -17,4 +17,7 @@ public interface TitreRepository extends JpaRepository<Titre, Integer>, JpaSpeci
     @Query(value = "SELECT tit.id_titre , tit.intitule , tit.date , tit.id_album , tit.audio , tit.paroles , tit.video , tit.image , tit.duree FROM `titre` as tit INNER JOIN  `playlist_titre` as play ON tit.id_titre=play.id_titre  where play.id_playlist = :idP" , nativeQuery = true)
     List<Titre> findTitreByIdPlaylist(int  idP);
     //pour recuperer toutes les musiques appartenant a la playlist ayant pour id id.
+
+    @Query(value = "SELECT tit.id_titre , tit.intitule , tit.date , tit.id_album , tit.audio , tit.paroles , tit.video , tit.image , tit.duree FROM `titre` as tit INNER JOIN  `historique` as play ON tit.id_titre=play.id_musique  where play.id_user = :idP LIMIT 5" , nativeQuery = true)
+    List<Titre> findHistoriqueTitreByUser(int  idP);
 }
