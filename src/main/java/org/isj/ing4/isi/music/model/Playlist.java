@@ -23,6 +23,9 @@ public class Playlist {
     @Column(name = "intitule_playlist", nullable = false)
     private String intitulePlaylist;
 
+    @Column(name = "etat_partage", nullable = false)
+    private int etatPartage = 0;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL ,optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

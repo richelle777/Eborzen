@@ -12,6 +12,7 @@ public class PlaylistDto extends AbstractDto{
     @Max(Integer.MAX_VALUE)
     private  Integer id;
     private String intitulePlaylist;
+    private int etatPartage = 0;
     private UserDto user;
     public PlaylistDto() {
     }
