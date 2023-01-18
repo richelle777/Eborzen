@@ -69,7 +69,7 @@ public class GeneralController {
     @GetMapping("/play")
     public String pagePlay(@RequestParam(value = "id", defaultValue = "") int id, Model model) throws IsjException {
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth);
+       /// System.out.println(auth);
         if(auth.getName() != "anonymousUser") {
             List<PlaylistDto> playlistDtos = playlistService.playlistOfUser(auth.getName());
             model.addAttribute("playlists", playlistDtos);

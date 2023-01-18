@@ -27,10 +27,10 @@ public class HistoriqueService {
         Titre titre = titreRepository.findById(idMusic).get();
 
         Historique historique = new Historique();
-        historique.setIdMusique(titre);
+        historique.setIdTitre(titre);
         historique.setIdUser(user);
         HistoriqueId historiqueId = new HistoriqueId();
-        historiqueId.setIdMusique(titre.getId());
+        historiqueId.setIdTitre(titre.getId());
         historiqueId.setIdUser(user.getId());
         historique.setId(historiqueId);
         return historiqueRepository.save(historique);

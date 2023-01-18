@@ -38,10 +38,12 @@ public class Titre {
     @Column(name = "paroles", nullable = false)
     private String paroles;
 
-    @Column(name = "video", nullable = false)
+    @Column(name = "video")
     private String video;
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image")
     private String image;
 
+    @Column(name = "prix")
+    private String prix;
 }

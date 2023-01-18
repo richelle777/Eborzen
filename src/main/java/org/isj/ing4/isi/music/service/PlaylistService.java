@@ -91,13 +91,15 @@ public class PlaylistService {
 
         PlaylistTitre playlistTitre = new PlaylistTitre();
         playlistTitre.setId(playlistTitreId);
-
-        return playlistTitreMapper.toDto(playlistTitreRepository.save(playlistTitre));
+        PlaylistTitreDto playlistDto = playlistTitreMapper.toDto(playlistTitreRepository.save(playlistTitre));
+       // System.out.println(playlistDto);
+        return playlistDto;
     }
 
     //pour lister les musiques d'une playlist
     public List<ArtisteDtoList> listMusicOfPlaylist(int idPlaylist) {
         List<TitreDto> titres =  titreRepository.findTitreByIdPlaylist(idPlaylist).stream().map(titreMapper::toDto).collect(Collectors.toList());
+        //System.out.println(titres);
         List<ArtisteDtoList> artisteDtoLists = new ArrayList<ArtisteDtoList>();
         titres.forEach((titre) -> {
             Titre entity = titreMapper.toEntity(titre);

@@ -74,7 +74,18 @@
                 </div>
                 <div class="timeline"></div>
             </div>
+<!--
             <div><button class=" btn btn-add mt-4 mb-5 btn-primary" data-toggle="modal" data-target="#downloadModal"><i class="bi bi-cloud-download-fill"></i> Telecharger les paroles</button></div>
+-->
+            <div class="row">
+                <div class="col-md-6">
+                    <a th:href="@{'/paiement/'+${titre.id}}"> <button class=" btn btn-add mt-4 mb-5 btn-primary" ><i class="bi bi-cloud-download-fill"></i> Télécharger audio <label th:text="${titre.prix}"></label>$ USD </button></a>
+                </div>
+                <div class="col-md-6">
+                    <a th:href="@{'/paiementparole/'+${titre.id}}"> <button class=" btn btn-add mt-4 mb-5 btn-primary" ><i class="bi bi-cloud-download-fill"></i> Télécharger paroles 2$ USD </button></a>
+                </div>
+            </div>
+
             <div class="modal fade" sec:authorize="isAuthenticated()" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true">
                 <form action="" method="post">
                     <div class="modal-dialog" role="document">

@@ -56,9 +56,11 @@ public class PlayListController {
 
     @GetMapping("/addmusic/{idp}/{idm}")
     public String addMusic(@PathVariable(value = "idp") String idp, @PathVariable(value = "idm") String idm, Model model) {
+
         int idplay = Integer.parseInt(idp);
         int idmusic = Integer.parseInt(idm);
-        playlistService.addMusicToPlaylist(idplay, idmusic);
+        //System.out.println(idp);
+        playlistService.addMusicToPlaylist(idmusic, idplay);
         return "redirect:/play?id="+idmusic;
     }
 
@@ -88,7 +90,7 @@ public class PlayListController {
         int idplay = Integer.parseInt(idp);
         int idmusic = Integer.parseInt(idm);
         playlistService.deleteMusicOfPlaylistBy(idmusic, idplay);
-        return "redirect:/mymusic?id="+idmusic;
+        return "redirect:/mymusic?idp="+idplay;
     }
 
     @GetMapping("/delete-playlist/{idp}")

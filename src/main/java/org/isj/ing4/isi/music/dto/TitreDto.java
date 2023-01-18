@@ -27,6 +27,7 @@ public class TitreDto extends AbstractDto {
     private String video;
     private String duree;
     private String image;
+    private String prix;
     public TitreDto() {
     }
 
