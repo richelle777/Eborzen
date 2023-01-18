@@ -68,8 +68,14 @@
                         </a>
 
                     </div>
+                    <div class="publish" th:if="${playlist.etatPartage == 1}">
+                        <button class="btn btn-success" title="Cette playlist est deja partagee" disabled ><i class="fa fa-share-alt"></i></button>
+                    </div>
+                    <div class="publish" th:if="${playlist.etatPartage == 0}">
+                        <button class="btn btn-success dis" data-toggle="modal" data-target="#publishModal"><a th:href="@{'/share/'+${playlist.id}}"><i class="fa fa-share-alt"></i></a></button>
+                    </div>
                     <div class="trash">
-                        <a class="btn btn-danger" th:href="@{'/delete-playlist/'+${playlist.id}}"><i class="fa fa-remove"></i></a>
+                        <button class="btn btn-danger" th:href="@{'/delete-playlist/'+${playlist.id}}"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>
             </li>
@@ -77,9 +83,20 @@
         </ul>
     </div>
 
-
-
-
+    <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h1>Playlist publiée avec succès !!</h1>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+    </div>
 
     <th:block th:replace="fragments/_footer.html::footer"></th:block>
 

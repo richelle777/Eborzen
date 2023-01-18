@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,10 +39,11 @@ public class PlayListController {
 		} else {
 			session.setAttribute("userName",  "");
 		}*/
+
+
         model.addAttribute("playlistDto", new PlaylistDto());
         model.addAttribute("playlists", playlistDtos);
         model.addAttribute("size", playlistDtos.size());
-
         Utils.updateModel(model);
         return "playlist";
     }

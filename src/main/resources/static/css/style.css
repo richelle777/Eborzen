@@ -939,10 +939,12 @@ input.email_text::placeholder {
     color: #d89616;
 }
 
-.trash {
+.trash  , .publish{
     margin-top: 1% !important;
 }
-
+.publish{
+    margin-right: 5px;
+}
 .title {
     margin-top: 0%;
 }
@@ -958,4 +960,7 @@ input.email_text::placeholder {
 
 .add-music {
     margin-top: 7%;
+}
+.fa {
+    color: white;
 }

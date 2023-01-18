@@ -41,11 +41,12 @@ public class PlaylistPartageeController {
     public String allShare(Model model) {
         List<PlaylistDto> playlists = playlistService.findAll();
         playlists.removeIf(playlistDto -> playlistDto.getEtatPartage() == 0);
-        model.addAttribute("playlist", playlists);
-        return "playlistpartage";
+        System.out.println(playlists);
+        model.addAttribute("playlists", playlists);
+        return "playlistpartagee";
     }
 
-    @GetMapping("/share/{id}")
+    @GetMapping("/share/{idp}")
     public String share(@PathVariable("idp") String idp) {
         PlaylistDto playlistDto = playlistService.findById(Integer.parseInt(idp));
         playlistDto.setEtatPartage(1);
