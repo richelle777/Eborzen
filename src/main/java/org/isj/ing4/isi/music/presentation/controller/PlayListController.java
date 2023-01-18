@@ -5,6 +5,7 @@ import org.isj.ing4.isi.music.dto.PlaylistDto;
 import org.isj.ing4.isi.music.dto.TitreDto;
 import org.isj.ing4.isi.music.dto.UserDto;
 import org.isj.ing4.isi.music.exception.IsjException;
+import org.isj.ing4.isi.music.model.Playlist;
 import org.isj.ing4.isi.music.model.User;
 import org.isj.ing4.isi.music.service.PlaylistService;
 import org.isj.ing4.isi.music.service.UserService;
@@ -99,4 +100,8 @@ public class PlayListController {
         playlistService.deletePlaylistById(idplay);
         return "redirect:/playlist";
     }
+
+
+
+
 }
